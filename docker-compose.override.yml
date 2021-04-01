@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+    realestate:
+        build:
+            context: .
+            target: realestate_base
+        environment:
+            ENV: 'dev'
+            NODE_ENV: 'dev'
+        ports:
+            - 3000:3000
+        command: npm run start:dev
+        volumes:
+            - .:/var/service/
+            - ./node_modules:/var/service/node_modules:cached
+
+    realestate-cron:
+        build:
+            context: .
+            target: realestate_cron
+        environment:
+            ENV: 'dev'
+            NODE_ENV: 'dev'
+        volumes:
+            - .:/var/service/
+            - ./node_modules:/var/service/node_modules:cached
+        command: npm run scrape:dev
+
+networks:
+    default:
+        driver: bridge
+        driver_opts:
+            com.docker.network.bridge.host_binding_ipv4: 127.0.0.1
