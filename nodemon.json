@@ -1,0 +1,13 @@
+{
+    "verbose": false,
+    "restartable": "rs",
+    "ignore": ["**/*.js", ".git", "node_modules/**/node_modules"],
+    "execMap": {
+        "js": "DEBUG=* ts-node src/app.ts"
+    },
+    "events": {
+        "restart": "echo 'Restarted application due to: '$FILENAME''"
+    },
+    "watch": ["src/", "config/"],
+    "ext": "ts yml"
+}
