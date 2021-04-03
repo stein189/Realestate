@@ -1,4 +1,4 @@
-FROM node:12-slim as realestate_base
+FROM node:14-slim as realestate_base
 
 WORKDIR /var/service
 

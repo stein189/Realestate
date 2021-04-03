@@ -8,8 +8,6 @@ services:
         environment:
             ENV: 'dev'
             NODE_ENV: 'dev'
-        ports:
-            - 3000:3000
         command: npm run start:dev
         volumes:
             - .:/var/service/

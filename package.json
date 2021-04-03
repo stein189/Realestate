@@ -1,6 +1,6 @@
 {
     "name": "realestate",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "Scrape all realestate brokers that opperate in Amsterdam",
     "main": "dist/app.js",
     "scripts": {
