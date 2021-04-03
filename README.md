@@ -12,6 +12,10 @@
 * Add the funda API key in the config/dev.yml file
 * Run `./bin/start.sh --build` in your terminal
 
+When to service is done you should see something like this:
+
+[image](./docs/result.jpg)
+
 ## Running the tests
 
 * Run `./bin/test.sh --build` in your terminal
