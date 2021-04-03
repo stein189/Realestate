@@ -3,7 +3,7 @@
     "restartable": "rs",
     "ignore": ["**/*.js", ".git", "node_modules/**/node_modules"],
     "execMap": {
-        "js": "DEBUG=* ts-node src/app.ts"
+        "js": "DEBUG=* ts-node"
     },
     "events": {
         "restart": "echo 'Restarted application due to: '$FILENAME''"

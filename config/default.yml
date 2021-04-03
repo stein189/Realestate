@@ -1,0 +1,5 @@
+parameters:
+    funda:
+        host: "https://partnerapi.funda.nl"
+        apiKey: ""
+        maxRetries: 6

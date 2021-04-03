@@ -1,16 +1,12 @@
 {
-    "name": "top-realestate",
+    "name": "realestate",
     "version": "0.1.0",
     "description": "Scrape all realestate brokers that opperate in Amsterdam",
     "main": "dist/app.js",
     "scripts": {
         "test": "jest",
-        "test:watch": "jest --collectCoverage=false --watchAll",
-        "scrape": "node dist/Scraper/cron.js",
-        "scrape:dev": "node_modules/.bin/nodemon src/Scraper/app.ts",
-        "start": "node dist/app.js",
-        "start:dev": "node_modules/.bin/nodemon  src/Api/app.ts",
-        "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create -d ./src -n"
+        "start": "node dist/Scraper/app.js",
+        "start:dev": "node_modules/.bin/nodemon src/Scraper/app.ts"
     },
     "author": "Stein Janssen",
     "private": true,
@@ -18,24 +14,20 @@
         "axios": "^0.21.1",
         "axios-retry": "^3.1.9",
         "config": "^3.3.6",
-        "debug": "^4.3.1",
-        "express": "^4.17.1",
         "inversify": "^5.0.5",
-        "mysql2": "^2.2.5",
         "reflect-metadata": "^0.1.13",
         "source-map-support": "^0.5.19",
-        "typeorm": "^0.2.32",
-        "uuid": "^7.0.2",
         "js-yaml": "^4.0.0",
         "js-logger": "^1.6.1"
     },
     "devDependencies": {
         "@types/debug": "4.1.5",
-        "@types/express": "^4.17.2",
         "@types/node": "^14.14.37",
-        "@types/uuid": "^7.0.2",
+        "@types/jest": "^26.0.22",
         "nodemon": "^2.0.7",
         "ts-node": "^9.1.1",
-        "typescript": "^4.2.3"
+        "typescript": "^4.2.3",
+        "ts-jest": "^26.5.4",
+        "jest": "^26.6.3"
     }
 }

@@ -1,25 +1,12 @@
 version: "3.9"
 
 services:
-    # Build docker image for the API
     realestate:
         image: codehub/realestate:latest
         container_name: realestate
         build:
             context: .
             target: realestate
-        environment:
-            ENV: "prod"
-            NODE_ENV: "prod"
-        tty: true
-
-    # Build seperate docker image for the scraper
-    realestate-cron:
-        image: codehub/realestate-cron:latest
-        container_name: realestate-cron
-        build:
-            context: .
-            target: realestate_cron
         environment:
             ENV: "prod"
             NODE_ENV: "prod"

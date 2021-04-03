@@ -1,6 +1,5 @@
-import Listing from '../Listing';
-import PaginatedResult from '../PaginatedResult';
+import Listing from '../../Domain/Model/Listing';
 
 export default interface ListingRepository {
-    allListingsInAmsterdam(take: number, page: number): Promise<PaginatedResult<Array<Listing>>>;
+    findAllByKeywords(keywords: Array<string>, take: number, page: number): Promise<Array<Listing>>;
 }
