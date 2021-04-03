@@ -15,18 +15,6 @@ services:
             - .:/var/service/
             - ./node_modules:/var/service/node_modules:cached
 
-    realestate-cron:
-        build:
-            context: .
-            target: realestate_cron
-        environment:
-            ENV: 'dev'
-            NODE_ENV: 'dev'
-        volumes:
-            - .:/var/service/
-            - ./node_modules:/var/service/node_modules:cached
-        command: npm run scrape:dev
-
 networks:
     default:
         driver: bridge

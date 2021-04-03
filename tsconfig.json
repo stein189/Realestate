@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "module": "commonjs",
+        "lib": ["es6"],
+        "types": ["node", "reflect-metadata", "jest"],
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "inlineSourceMap": true,
+        "outDir": "dist",
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+}
