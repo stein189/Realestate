@@ -3,7 +3,6 @@ import assert from 'assert';
 export default class Broker {
     private _brokerId: number;
     private _brokerName: string;
-    private _listingCount: number = 0;
 
     public constructor(brokerId: number, brokerName: string) {
         // These values are asserted to make sure that they have the correct type on runetime.
@@ -22,13 +21,5 @@ export default class Broker {
 
     public get brokerName(): string {
         return this._brokerName;
-    }
-
-    public incrementListingCount() {
-        this._listingCount++;
-    }
-
-    public get listingCount(): number {
-        return this._listingCount;
     }
 }

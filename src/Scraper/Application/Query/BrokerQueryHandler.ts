@@ -1,8 +1,8 @@
 import ListingRepository from '../Interface/ListingRepository';
 import { ILogger } from 'js-logger';
-import Broker from '../../Domain/Model/Broker';
 import Listing from '../../Domain/Model/Listing';
 import BrokersWithMostListingsQuery from './BrokersWithMostListingsQuery';
+import BrokerListings from '../Representation/BrokerListings';
 
 export default class BrokerQueryHandler {
     public constructor(
@@ -10,13 +10,15 @@ export default class BrokerQueryHandler {
         private readonly logger: ILogger
     ) {}
 
-    public async getBrokersWithMostListings(query: BrokersWithMostListingsQuery): Promise<Array<Broker>> {
+    public async getBrokersWithMostListings(
+        query: BrokersWithMostListingsQuery
+    ): Promise<Array<BrokerListings>> {
         this.logger.debug('getBrokersWithMostListings method triggered with %o', query);
 
         const perPage = 25;
         let page = 1;
         let listingResult: Array<Listing>;
-        let brokersMap: Record<string, Broker> = {};
+        let brokersMap: Record<string, BrokerListings> = {};
 
         do {
             this.logger.debug(
@@ -27,11 +29,7 @@ export default class BrokerQueryHandler {
             );
 
             // fetch listings
-            listingResult = await this.listingRepository.findAllByKeywords(
-                query.keywords,
-                perPage,
-                page
-            );
+            listingResult = await this.listingRepository.findAllByKeywords(query.keywords, perPage, page);
             // map listings by broker
             brokersMap = this.createBrokerMap(listingResult, brokersMap);
 
@@ -45,25 +43,30 @@ export default class BrokerQueryHandler {
         return sortedBrokers.slice(0, query.amountOfBrokers);
     }
 
-    private createBrokerMap(listingResult: Array<Listing>, brokersMap: Record<string, Broker>) {
+    private createBrokerMap(listingResult: Array<Listing>, brokersMap: Record<string, BrokerListings>) {
         for (const listing of listingResult) {
             // If the broker is not yet in our map add it
             if (brokersMap[listing.broker.brokerId] === undefined) {
-                brokersMap[listing.broker.brokerId] = listing.broker;
+                // Instead of using the Broker domain object we use a different BrokerListings object
+                // We need this because we want to return additional information that does not belong to the Broker object
+                brokersMap[listing.broker.brokerId] = new BrokerListings(
+                    listing.broker.brokerId,
+                    listing.broker.brokerName
+                );
             }
 
             // Increment the counter
-            (brokersMap[listing.broker.brokerId] as Broker).incrementListingCount();
+            (brokersMap[listing.broker.brokerId] as BrokerListings).listings++;
         }
 
         return brokersMap;
     }
 
-    private sortBrokersByMostListings(brokersMap: Record<string, Broker>): Array<Broker> {
-        return Object.values(brokersMap).sort((brokerA: Broker, brokerB: Broker) => {
-            if (brokerA.listingCount > brokerB.listingCount) {
+    private sortBrokersByMostListings(brokersMap: Record<string, BrokerListings>): Array<BrokerListings> {
+        return Object.values(brokersMap).sort((brokerA: BrokerListings, brokerB: BrokerListings) => {
+            if (brokerA.listings > brokerB.listings) {
                 return -1;
-            } else if (brokerA.listingCount < brokerB.listingCount) {
+            } else if (brokerA.listings < brokerB.listings) {
                 return 1;
             }
 

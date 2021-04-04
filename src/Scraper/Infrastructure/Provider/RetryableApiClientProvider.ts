@@ -23,7 +23,7 @@ export default class RetryableApiClientProvider {
         axiosRetry(axios, {
             retryCondition: (error) => {
                 // We want to retry the call if one of the following error statusses were returned
-                return [401, 500, 502].includes(error.response.status);
+                return [401, 500, 502].includes(error?.response?.status);
             },
             retryDelay: (retryCount) => {
                 this.logger.warn('API attempt %s failed, retrying... ', retryCount);
