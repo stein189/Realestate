@@ -14,7 +14,7 @@
 
 When to service is done you should see something like this:
 
-[image](./docs/result.jpg)
+![image](./docs/result.jpg)
 
 ## Running the tests
 
