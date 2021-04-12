@@ -61,9 +61,9 @@ describe('BrokerQueryHandler', () => {
 
         expect(result).toEqual([
             {
-                _brokerId: 1,
-                _brokerName: 'broker-name',
-                _listingCount: 4,
+                brokerId: 1,
+                brokerName: 'broker-name',
+                listings: 4,
             },
         ]);
     });
@@ -83,19 +83,19 @@ describe('BrokerQueryHandler', () => {
 
         expect(result).toEqual([
             {
-                _brokerId: 3,
-                _brokerName: 'broker-name-3',
-                _listingCount: 3,
+                brokerId: 3,
+                brokerName: 'broker-name-3',
+                listings: 3,
             },
            {
-                _brokerId: 1,
-                _brokerName: 'broker-name',
-                _listingCount: 2,
+                brokerId: 1,
+                brokerName: 'broker-name',
+                listings: 2,
             },
            {
-                _brokerId: 2,
-                _brokerName: 'broker-name-2',
-                _listingCount: 1,
+                brokerId: 2,
+                brokerName: 'broker-name-2',
+                listings: 1,
             },
         ]);
     });
